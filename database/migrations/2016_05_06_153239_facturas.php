@@ -17,11 +17,12 @@ class Facturas extends Migration
             $table->string('numFactura', 12)->comment('Numero de factura generada');
             $table->date('fechaFactura')->comment('Fecha de generacion de la factura');
             $table->string('descripcionFactura')->nullable();
-            $table->float('baseImponible', 11, 2)->comment('Base imponible de la factura');
+            $table->float('baseImponible', 11, 2)->comment('Base imponible de la factura')->nullable();
             $table->float('IVA_por', 4, 2)->comment('Porcentaje de Iva impuesto por el ejecutivo nacional');
-            $table->float('IVA_monto', 10, 2)->comment('Monto de porcentaje de impuesto generado');
-            $table->float('totalFact', 11, 2)->comment('Total facturado');
-            $table->enum('pagada',['SI', 'NO'])->default('no');
+            $table->float('IVA_monto', 10, 2)->comment('Monto de porcentaje de impuesto generado')->nullable();
+            $table->float('totalFact', 11, 2)->comment('Total facturado')->nullable();
+            $table->enum('pagada',['SI', 'NO'])->default('NO');
+            $table->enum('facturado', ['SI', 'NO'])->default('NO');
 
             $table->integer('empresas_id')->unsigned();
             $table->foreign('empresas_id')->references('idEmpresas')->on('empresas');

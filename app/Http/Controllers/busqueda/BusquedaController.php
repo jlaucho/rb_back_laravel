@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\Empresas;
 use App\Models\CorreosEnviados;
 use App\Models\Facturas;
+use App\Models\Tabulador;
 
 class BusquedaController extends Controller
 {
@@ -27,14 +28,18 @@ class BusquedaController extends Controller
           	$busqueda = Facturas::busquedaFactura( $id );
           	break;
 
-		case 'empresa':
-          	$busqueda = Empresas::find( $id );
-			break;
+    		case 'empresa':
+              	$busqueda = Empresas::find( $id );
+    			break;
+
+        case 'tabulador':
+                $busqueda = Tabulador::all()->first();
+          break;
     		
 		default:
 			return response()->json([
 				'ok'=>false,
-				'error'=>['coleccion'=>'Coleccion no permitida, solo se admite "usuario", "empresa", "correo" y factura']
+				'error'=>['coleccion'=>'Coleccion no permitida, solo se admite "usuario", "empresa", "correo", "tabulador" y "factura"']
 			], 400);
 			break;
     	}

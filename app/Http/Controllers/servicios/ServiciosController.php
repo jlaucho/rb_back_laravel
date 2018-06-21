@@ -20,7 +20,7 @@ class ServiciosController extends Controller
   public function store( Request $request)
   {
 
-  	// return $request->all();
+  	return $request->all();
 		$correo = new CorreosEnviados();
 		$correo->fill( $request->all() );
 		$correo->registrado_por = auth()->user()->id;

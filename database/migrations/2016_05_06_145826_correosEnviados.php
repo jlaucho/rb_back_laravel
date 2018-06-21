@@ -20,8 +20,9 @@ class CorreosEnviados extends Migration
             $table->integer('cantPernocta');
             $table->integer('cantCorreos')->comment('cantidad de correos con el mismo monto')->default(1);
             $table->enum('facturado', ['NO', 'SI'])->default('NO')->comment('Aca es donde se guara si el servicio se encuentra facturado');
-            $table->float('totalMonto')->nullable()->comment('Monto a cobrar por el servicio realizado');
-            $table->float('bonoFinSemana');
+            $table->float('totalMonto', 11,2)->nullable()->comment('Monto a cobrar por el servicio realizado');
+            $table->float('monto_bonoFinSemana', 9,2)->->nullable();
+            $table->enum('bono_finSemana', ['SI', 'NO'])->default('NO');
             $table->enum('ODC',['SI','NO'])->default('SI');
 
             $table->integer('realizado_por')->unsigned()->comment('Guarda el conductor que realizo el servicio');

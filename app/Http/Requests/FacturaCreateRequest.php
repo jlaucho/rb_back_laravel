@@ -27,10 +27,7 @@ class FacturaCreateRequest extends FormRequest
             'numFactura'  =>'required|unique:facturas',
             'fechaFactura'=>'required',
             'descripcion' =>'max:250',
-            'baseImponible'=>'required|numeric',
             'IVA_por'     =>'required|numeric',
-            'IVA_monto'   =>'required|numeric',
-            'totalFact'   =>'required|numeric',
             'pagada'      =>'max:2',
             'empresas_id' =>'required|numeric'
         ];

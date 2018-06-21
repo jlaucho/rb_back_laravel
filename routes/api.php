@@ -86,10 +86,19 @@ Route::group(['prefix' => 'servicio', 'namespace'=>'servicios\\', 'middleware'=>
  */
 Route::group(['prefix' => 'factura', 'namespace'=>'factura\\', 'middleware'=>'auth:api'], function() {
     Route::post('store', 'FacturaController@store')->name('factura.store');
-    Route::get('', 'FacturaController@empresasList')->name('factura.list');
+    Route::get('', 'FacturaController@facturaList')->name('factura.list');
     Route::put('/{id}', 'FacturaController@update')->name('factura.update');
     Route::delete('/{id}', 'FacturaController@delete')->name('factura.delete');
 });
+/**
+ *
+ * Rutas de Tabulador de traslado
+ *
+ */
+Route::group(['prefix' => 'tabulador', 'namespace'=>'tabulador\\','middleware'=>'auth:api'], function() {
+    Route::post('tabulador', 'tabuladorController@store')->name('tabulador.store');
+});
+
 
 
 
