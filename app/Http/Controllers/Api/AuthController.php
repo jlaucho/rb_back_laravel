@@ -34,7 +34,7 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function login( UserLoginRequest $request )
+    public function login(UserLoginRequest $request)
     {
         $credentials = request(['email', 'password']);
 
@@ -45,7 +45,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        return $this->respondWithToken( $token );
+        return $this->respondWithToken($token);
     }
 
     /**
@@ -58,7 +58,7 @@ class AuthController extends Controller
         return response()->json([
           'ok' => true,
           'user'=> auth()->user()
-        ]);
+        ], 200);
     }
 
     /**
