@@ -8,12 +8,15 @@ use App\Http\Controllers\Controller;
 use App\Models\Facturas;
 use App\Models\CorreosEnviados;
 use App\Models\Correo_Factura;
+use App\Http\Controllers\pdfs\generarPdfController;
+use App\Jobs\generarFacturaPdfJobs;
+
 // use App\Http\Controllers\busqueda\BusquedaController;
 
 class FacturaController extends Controller
 {
 
-	/**
+    /**
   *
   * Store the Factura
   * @return json Object
@@ -21,47 +24,54 @@ class FacturaController extends Controller
   * @method POST
   *
   */
-  public function store(FacturaCreateRequest $request)
-  {
-    $factura = new Facturas();
-    $factura->fill( $request->all());
+    public function store(FacturaCreateRequest $request)
+    {
+        // Esta es el area donde en envia a generar factura
+        // generarFacturaPdfJobs::dispatch('algo');
+        $pdf = \PDF::loadview('vendor.pdfs.generarFactura');
+        return $pdf->download('ejemplo.pdf');
+        // return $valor;
 
-    $factura->save();
+        return $request->all();
+        $factura = new Facturas();
+        $factura->fill($request->all());
 
-    // $busqueda = new BusquedaController();
+        $factura->save();
 
-    $sum_servicios = 0;
-    foreach ($request->correo_id as $key => $correo) {
+        $total_servicios = 0; // Suma el total de todos los servicios invocados en la factura
 
-      $correo = CorreosEnviados::find($request->correo_id[$key]);      
+        foreach ($request->correo_id as $key => $correo) {
+            $correo = CorreosEnviados::find($request->correo_id[$key]);
 
-      $correo_factura = new Correo_Factura();
-      $correo_factura->correo_id = $correo->idCorreos;
-      $correo_factura->totalRenglonFactura = $correo->totalMonto;
-      $correo_factura->cantServicios = $request->cantServicios[$key];
-      $correo_factura->codigo = $request->codigo[$key];
-      $correo_factura->ODC = $request->ODC[$key];
-      $correo_factura->descripcion = $request->descripcion[$key];
-      $sum_servicios+= $correo->totalMonto;
-      $correo_factura->r_factura()->associate($factura);
-      $correo_factura->save();
+            $correo_factura = new Correo_Factura();
+            $correo_factura->correo_id = $correo->idCorreos;
+            $correo_factura->totalRenglonFactura = $correo->totalMonto;
+            $correo_factura->cantServicios = $request->cantServicios[$key];
+            $correo_factura->codigo = $request->codigo[$key];
+            $correo_factura->ODC = $request->ODC[$key];
+            $correo_factura->descripcion = $request->descripcion[$key];
+            $correo_factura->r_factura()->associate($factura);
+            $correo_factura->save();
 
-      $correo->facturado = 'SI';
-      $correo->save();
+            $total_servicios+= $correo->totalMonto * $request->cantServicios[$key];
+
+            $correo->facturado = 'SI';
+            $correo->save();
+        }
+
+        $factura->baseImponible = $total_servicios;
+        $IVA_monto = $factura->baseImponible * ($request->IVA_por / 100);
+        $factura->IVA_monto = round($IVA_monto, 2);
+
+        $factura->totalFact = $factura->baseImponible + $factura->IVA_monto;
+        $factura->save();
+
+
+        return response()->json([
+            'ok'=> true,
+            'factura'=>$factura,
+            'mensaje'=>'Factura creada correctamente'
+        ], 201);
     }
-
-    $factura->baseImponible = $sum_servicios;
-    $factura->IVA_monto = $factura->baseImponible * ($request->IVA_por / 100);
-    $factura->totalFact = $factura->baseImponible + $factura->IVA_monto;
-    $factura->save();
-    
-          
-
-		return response()->json([
-			'ok'=> true,
-			'factura'=>$factura,
-			'mensaje'=>'Factura creada correctamente'
-		], 201);
-  }
-  /*---------------------------------------------------------------------------------------*/
+    /*---------------------------------------------------------------------------------------*/
 }

@@ -9,7 +9,7 @@ class Facturas extends Model
     protected $table 			  = 'facturas';
     protected $primaryKey 	= 'idFacturas';
     protected $fillable 		= [
-    	'idFacturas', 'numFactura' , 'fechaFactura' , 'descripcionFactura', 'baseImponible', 'IVA_por', 'IVA_monto', 'totalFact', 'pagada', 'empresas_id', 'created_at'
+        'idFacturas', 'numFactura' , 'fechaFactura' , 'descripcionFactura', 'baseImponible', 'IVA_por', 'IVA_monto', 'totalFact', 'pagada', 'empresas_id', 'created_at'
     ];
 
     /**
@@ -18,60 +18,55 @@ class Facturas extends Model
      *
      */
     public function r_correos_facturas()
-      {
+    {
         return $this->hasMany('App\Models\Correo_Factura', 'factura_id', 'idFacturas');
-      }
+    }
 
     public function r_empresa()
-      {
+    {
         return $this->belongsTo('App\Models\Empresas', 'empresas_id', 'idEmpresas');
-      }
+    }
     /**
      *
      * Method Static of Factura Tables
      *
      */
 
-    private static function facturaEstatus ( $estatus ) {
-      $facturas = Facturas::select('*')
+    private static function facturaEstatus($estatus)
+    {
+        $facturas = Facturas::select('*')
         ->where('pagada', $estatus)
         ->orderBy('created_at', 'DESC')
-        ->get();  
-      return $facturas;
-      }
+        ->get();
+        return $facturas;
+    }
 
-    public static function busquedaFactura( $option ){
-
-      if ($option == 'todas'){
-
-        $facturas = Facturas::select('*')
+    public static function busquedaFactura($option)
+    {
+        if ($option == 'todas') {
+            $facturas = Facturas::select('*')
           ->orderBy('created_at', 'DESC')
           ->get();
+        } elseif ($option == 'pagadas') {
+            $facturas = self::facturaEstatus('SI');
+        } elseif ($option == 'pendientes') {
+            $facturas = self::facturaEstatus('NO');
+        } else {
+            $factura = Facturas::where('numFactura', 'like', '%'.$option.'%')->first();
 
-      } else if ( $option == 'pagadas' ){
-        $facturas = self::facturaEstatus('SI');
+            if ($factura) {
+                $factura->r_empresa;
+            }
 
-      } else if ( $option == 'pendientes' ){
-        $facturas = self::facturaEstatus('NO');
-      } else {
-
-        $factura = Facturas::find( $option );
-
-        if ( $factura ){
-          $factura->r_empresa;
+            return $factura;
         }
 
+        if (!$facturas) {
+            foreach ($facturas as $key => $factura) {
+                $factura->r_empresa;
+            }
+        }
 
-        return $factura; 
-      }
-
-
-      foreach ($facturas as $key => $factura) {
-        $factura->r_empresa;
-      }
-
-      return $facturas;
-
+        return $facturas;
     }
-    
 }

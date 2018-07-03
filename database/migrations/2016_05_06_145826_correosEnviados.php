@@ -20,10 +20,14 @@ class CorreosEnviados extends Migration
             $table->integer('cantPernocta');
             $table->integer('cantCorreos')->comment('cantidad de correos con el mismo monto')->default(1);
             $table->enum('facturado', ['NO', 'SI'])->default('NO')->comment('Aca es donde se guara si el servicio se encuentra facturado');
-            $table->float('totalMonto', 11,2)->nullable()->comment('Monto a cobrar por el servicio realizado');
-            $table->float('monto_bonoFinSemana', 9,2)->->nullable();
+            $table->float('totalMonto', 11, 2)->nullable()->comment('Monto a cobrar por el servicio realizado');
+            $table->float('monto_bonoFinSemana', 11, 2)->nullable();
+            $table->float('monto_encomienda', 11, 2)->nullable()->comment('Este bono se calcula sumando todos los recorridos que contemplan esta opcion en "SI"');
+            $table->float('monto_nocturno', 11, 2)->nullable()->comment('Este bono se calcula sumando todos los recorridos que contemplan esta opcion en "SI"');
+            $table->float('monto_horas', 11, 2)->nullable()->comment('este es el calculo realizado con la multiplicacion de cantHoras por el monto del tabulador vigente');
+            $table->float('monto_pernocta', 11, 2)->nullable()->comment('este es el calculo realizado con la multiplicacion de cantPernocta por el monto del tabulador vigente');
             $table->enum('bono_finSemana', ['SI', 'NO'])->default('NO');
-            $table->enum('ODC',['SI','NO'])->default('SI');
+            $table->enum('ODC', ['SI','NO'])->default('SI');
 
             $table->integer('realizado_por')->unsigned()->comment('Guarda el conductor que realizo el servicio');
             $table->foreign('realizado_por')->references('id')->on('users')->onDelete('cascade');

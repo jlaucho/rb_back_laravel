@@ -72,7 +72,7 @@ Route::group(['prefix' => 'empresa', 'namespace'=>'empresa\\', 'middleware'=>'au
  */
 Route::group(['prefix' => 'servicio', 'namespace'=>'servicios\\', 'middleware'=>'auth:api'], function () {
     Route::post('store', 'ServiciosController@store')->name('servicio.store');
-    Route::get('', 'ServiciosController@correoList')->name('servicio.list');
+    Route::get('{option?}', 'ServiciosController@correoList')->name('servicio.list');
     // Route::put('/{id}', 'CorreosEnviadosController@update')->name('correo.update');
     // Route::delete('/{id}', 'CorreosEnviadosController@delete')->name('correo.delete');
 });
@@ -93,5 +93,6 @@ Route::group(['prefix' => 'factura', 'namespace'=>'factura\\', 'middleware'=>'au
  *
  */
 Route::group(['prefix' => 'tabulador', 'namespace'=>'tabulador\\','middleware'=>'auth:api'], function () {
-    Route::post('tabulador', 'tabuladorController@store')->name('tabulador.store');
+    Route::post('', 'tabuladorController@store')->name('tabulador.store');
+    Route::get('', 'tabuladorController@index')->name('tabulador.index');
 });

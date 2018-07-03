@@ -25,7 +25,7 @@ class AuthModeuleTest extends TestCase
             dd('Fallo la validacion verifique los datos del usuario ');
         }
         $headers = [
-          'Authorization' => 'Bearer '.$response->baseResponse->original["token"]
+          'token' => 'Bearer '.$response->baseResponse->original["token"]
         ];
         File::put(public_path('/token.json'), json_encode($headers));
         $this->assertEquals(true, $response->baseResponse->original["ok"]);
@@ -34,7 +34,7 @@ class AuthModeuleTest extends TestCase
     public function testAuthMe()
     {
         $token = json_decode(file_get_contents(public_path('/token.json', true)));
-        $headers = ['Authorization' => $token->Authorization];
+        $headers = ['Authorization' => $token->token];
         $response = $this->withHeaders($headers)->json('POST', env("PREFIX_API").'auth/me');
         //     $response = $this->postJson(env("PREFIX_API").'auth/me', [ '', $headers]);
         // $response->assertForbidden();

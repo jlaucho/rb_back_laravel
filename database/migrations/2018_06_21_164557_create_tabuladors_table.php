@@ -20,7 +20,7 @@ class CreateTabuladorsTable extends Migration
             $table->float('monto_pernocta', 11, 2);
             $table->float('monto_horas', 11, 2);
             $table->float('por_fin_semana', 4, 2);
-            
+            $table->enum('activo', ['SI', 'NO'])->default('SI');
             $table->timestamps();
         });
     }
