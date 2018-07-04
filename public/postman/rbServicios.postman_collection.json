@@ -1,0 +1,932 @@
+{
+	"info": {
+		"_postman_id": "ae239941-cde9-4021-b969-7833accdc0c4",
+		"name": "rbServicios",
+		"description": "Sistema de gestion administrativa de registros",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth: User Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "jlaucho@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "14460484",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/auth/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
+					]
+				},
+				"description": "Entrada de login al sistema"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth: me",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/auth/me",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"me"
+					]
+				},
+				"description": "devuelve los datos del usuario logueado en el sistema, requiere el token"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth: refresh token",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MjYyOTkyNDgsImV4cCI6MTUyNjMwMjg0OCwibmJmIjoxNTI2Mjk5MjQ4LCJqdGkiOiJKdFhWd3I5dTZzRFRIckMzIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.ZWae9ru5rFfOPtPWu0yGvfNdZCwv_Ddr8y4TnCIvdkI"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/auth/refresh",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"refresh"
+					]
+				},
+				"description": "Reinicializacion del token"
+			},
+			"response": []
+		},
+		{
+			"name": "Auth: LogOut",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvcmVmcmVzaCIsImlhdCI6MTUyNTc3ODA2MywiZXhwIjoxNTI1NzgxODY5LCJuYmYiOjE1MjU3NzgyNjksImp0aSI6IlVGb2dvNVBUSXdONk5pSlYiLCJzdWIiOjEzLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.h4Qp27c2QjVZh6n5ho21NbEIfnW0lHMxNhJ3_obDJco"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/auth/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"logout"
+					]
+				},
+				"description": "Salida del sistema, requiere token y lo inhabilita"
+			},
+			"response": []
+		},
+		{
+			"name": "User: Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Florinda",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "apellido",
+							"value": "Rangel",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "Urb. San rafael",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cedula",
+							"value": "14460484",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "jlaucho@gmail.com",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "type",
+							"value": "superAdmin",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "14460484",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "14460484",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/user/store",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"store"
+					]
+				},
+				"description": "Creacion de usuario en la BD"
+			},
+			"response": []
+		},
+		{
+			"name": "User: Lista",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer  {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user"
+					]
+				},
+				"description": "Lista de usuarios registrados en el sistema"
+			},
+			"response": []
+		},
+		{
+			"name": "User: Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MjU4MDU1MzAsImV4cCI6MTUyNTgwOTEzMCwibmJmIjoxNTI1ODA1NTMwLCJqdGkiOiJ3OE5pdkdoVEVnWjJVRm9wIiwic3ViIjoxMywicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.5RkHqWHyNkKlDeBQfYLOyJHIqlVrp912-GTxJS5u2Ns"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Jaimes",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "jlaucho@gmail.com",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/user/14",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"14"
+					]
+				},
+				"description": "Actualizar informacion del usuario por el ID"
+			},
+			"response": []
+		},
+		{
+			"name": "User: Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MjU4MDg4MTgsImV4cCI6MTUyNTgxMjQxOCwibmJmIjoxNTI1ODA4ODE4LCJqdGkiOiI3dnM5ZVB5R2djR2VJa3FSIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.Hk752A1ntmhU5uGUCdvrc-gpZPeWu0nleqJl606X8z4"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/user/2",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"user",
+						"2"
+					]
+				},
+				"description": "Borrar usuario del sistema, ese utiliza sofdelete, require token y id del usuario a eliminar"
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda: Busqueda por coleccion",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/buscar/factura/pagadas",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"buscar",
+						"factura",
+						"pagadas"
+					]
+				},
+				"description": "Esta busqueda se realiza la busqueda por colleccion, tabaja con las opciones, todas, pendientes, pagadas o el id"
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa: store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "EJEMPLO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "RIF",
+							"value": "j-0006272-1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "alguna direccion de la empresa",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "0261787834",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Descripcion de la empresa",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/empresa/store",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"empresa",
+						"store"
+					]
+				},
+				"description": "Registrar empresa en el sistema, requiere token, devuelve el objEmpresa"
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa: Lista",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/empresa",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"empresa"
+					]
+				},
+				"description": "Listado de empresas registradas en el sistema, requiere token"
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa: Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvYXV0aFwvbG9naW4iLCJpYXQiOjE1MjY0OTk2NDksImV4cCI6MTUyNjUxNzY0OSwibmJmIjoxNTI2NDk5NjQ5LCJqdGkiOiJ6eWNudVc1a0JHRFBXcHNwIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.WRp-8ahgCJVMPeLZn-TxTGqrygd1bnUuS9-LY4yHLC8"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Empresa",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "RIF",
+							"value": "J-701814-9",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "direccion",
+							"value": "San Rafael",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "descripcion",
+							"value": "Empresa de cerveza",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "telefono",
+							"value": "026545874",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/empresa/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"empresa",
+						"1"
+					]
+				},
+				"description": "Metodo de actualizacion de los datos de la empresa, se requiere token para ejecutarlo"
+			},
+			"response": []
+		},
+		{
+			"name": "Empresa: Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC92MVwvdXNlclwvc3RvcmUiLCJpYXQiOjE1MjYzMTY4NjMsImV4cCI6MTUyNjMyMDQ2MywibmJmIjoxNTI2MzE2ODYzLCJqdGkiOiJDbGxCaXJJczZEZWRTNlQwIiwic3ViIjoxLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.62ea-auKx79towsQNPGyg_ddmhtu51HGq9gXGIdA37Y"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/empresa/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"empresa",
+						"1"
+					]
+				},
+				"description": "Borrado de empresa en el sistema, espa protegido con token y utiliza softdelete"
+			},
+			"response": []
+		},
+		{
+			"name": "Servicio: store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "mensaje",
+							"value": "Buenos día, por medio de la presente adjunto el detalle de servicio prestado el día 27 del mes de Junio de 2018: (Servicio Prestado al Sra. Monica Rincon) ",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "fechaServicio",
+							"value": "2018-06-27",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantHoras",
+							"value": "3",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantPernocta",
+							"value": "0",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantCorreos",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "bono_finSemana",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "ODC",
+							"value": "SI",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "realizado_por",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "registrado_por",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Pepsi N",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Modelo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvExter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "3000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Modelo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "EFE",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvInter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "3000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "EFE",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Pepsi N",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvExter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "SI",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "3000",
+							"description": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/servicio/store",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"servicio",
+						"store"
+					]
+				},
+				"description": "Se realiza el guardado de servicios por correo a el sistema, tambien contempla los recorridos y proteccion por token"
+			},
+			"response": []
+		},
+		{
+			"name": "Servicio: Lista",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/servicio/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"servicio",
+						"1"
+					]
+				},
+				"description": "Devuelve la lista de correos registrados en el sistema, estos a su vez trae la relacion con el conductor que realizo el servicio y el usuario que lo registro en el sistema. Trae tambien los recorridos correspondientes al traslado enviado por correo"
+			},
+			"response": []
+		},
+		{
+			"name": "Factura: store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "numFactura",
+							"value": "00406",
+							"description": "Numero de la factura",
+							"type": "text"
+						},
+						{
+							"key": "fechaFactura",
+							"value": "2018-06-22",
+							"description": "Fecha de la introduccion de la factura",
+							"type": "text"
+						},
+						{
+							"key": "descripcionFactura",
+							"value": "Esta es una descripcion opcional de la factura",
+							"description": "descripcion",
+							"type": "text"
+						},
+						{
+							"key": "IVA_por",
+							"value": "0",
+							"description": "Este es el procentaje del impuesto",
+							"type": "text"
+						},
+						{
+							"key": "empresas_id",
+							"value": "1",
+							"description": "Enpresa a la cual se introdujo la factura",
+							"type": "text"
+						},
+						{
+							"key": "correo_id[]",
+							"value": "5",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantServicios[]",
+							"value": "1",
+							"description": "Catidad de servicios por el cual se multiplica el renglon",
+							"type": "text"
+						},
+						{
+							"key": "codigo[]",
+							"value": "TR005",
+							"description": "Codigo interno que se refiere a los traslados",
+							"type": "text"
+						},
+						{
+							"key": "ODC[]",
+							"value": "1012547854",
+							"description": "Orden de servicio provista por el proveedor",
+							"type": "text"
+						},
+						{
+							"key": "descripcion[]",
+							"value": "Maracaibo-Cabimas-Maracaibo",
+							"description": "descripcion del renglon del servicio realizado",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/factura/store",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"factura",
+						"store"
+					]
+				},
+				"description": "Guardar factura en el sistema, retorna los datos de la factura guardada"
+			},
+			"response": []
+		},
+		{
+			"name": "Tabulador: store",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "por_bono_nocturno",
+							"value": "20",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "por_encomienda",
+							"value": "20",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "monto_pernocta",
+							"value": "25800000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "monto_horas",
+							"value": "6880000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "por_fin_semana",
+							"value": "20",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"description": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/api/v1/tabulador",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"tabulador"
+					]
+				},
+				"description": "Endpoint donde se guardan los valores del tabulador para realizar los calculos automaticos de los costos totales de los servicios"
+			},
+			"response": []
+		}
+	]
+}
