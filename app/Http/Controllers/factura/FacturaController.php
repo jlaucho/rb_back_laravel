@@ -26,11 +26,16 @@ class FacturaController extends Controller
   */
     public function store(FacturaCreateRequest $request)
     {
+        // $generar = new generarPdfController();
+
+        // $generar::facturaNueva();
+
         // Esta es el area donde en envia a generar factura
-        // generarFacturaPdfJobs::dispatch('algo');
-        $pdf = \PDF::loadview('vendor.pdfs.generarFactura');
-        return $pdf->download('ejemplo.pdf');
+        // generarFacturaPdfJobs::dispatch();
+        // $pdf = \PDF::loadview('vendor.pdfs.generarFactura');
+        // return $pdf->download('ejemplo.pdf');
         // return $valor;
+        
 
         return $request->all();
         $factura = new Facturas();

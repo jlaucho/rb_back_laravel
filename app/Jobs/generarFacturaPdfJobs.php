@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
+
 class generarFacturaPdfJobs implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
@@ -17,11 +18,9 @@ class generarFacturaPdfJobs implements ShouldQueue
      *
      * @return void
      */
-    private $algo;
 
-    public function __construct($algo)
+    public function __construct()
     {
-        $this->algo = $algo;
     }
 
     /**
@@ -31,6 +30,7 @@ class generarFacturaPdfJobs implements ShouldQueue
      */
     public function handle()
     {
-        return $this->algo;
+        $pdf = \PDF::loadview('vendor.pdfs.generarFactura');
+        return $pdf->download('ejemplo.pdf');
     }
 }
