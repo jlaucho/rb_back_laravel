@@ -52,18 +52,21 @@ class Facturas extends Model
         } elseif ($option == 'pendientes') {
             $facturas = self::facturaEstatus('NO');
         } else {
-            $factura = Facturas::where('numFactura', 'like', '%'.$option.'%')->first();
+            $facturas = Facturas::where('numFactura', 'like', '%'.$option.'%')->get();
 
-            if ($factura) {
-                $factura->r_empresa;
-            }
-
-            return $factura;
+            // if ($factura) {
+            //     $factura->r_empresa;
+            // }
+            //
+            // return $factura;
         }
 
-        if (!$facturas) {
+        if ($facturas) {
             foreach ($facturas as $key => $factura) {
                 $factura->r_empresa;
+                foreach ($factura->r_correos_facturas as $correoE) {
+                    $correoE->r_correoEnviado;
+                }
             }
         }
 

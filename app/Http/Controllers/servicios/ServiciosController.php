@@ -20,7 +20,7 @@ class ServiciosController extends Controller
     */
     public function store(Request $request)
     {
-        $tabulador = Tabulador::tabuladorActivo();
+        $tabulador = Tabulador::tabuladorActivo('activo');
         if (!$tabulador) {
             return response()->json([
             'ok'=>false,
@@ -118,7 +118,7 @@ class ServiciosController extends Controller
     {
         try {
             $correos = CorreosEnviados::datosCorreo($option);
-
+            // dd($correos);
             if (!$correos) {
                 return response()->json([
                 'ok' => false,

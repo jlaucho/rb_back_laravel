@@ -55,9 +55,18 @@ class CorreosEnviados extends Model
                 ->where('facturado', "NO")
                 ->get();
               break;
+          case 'facturados':
+            $correos = CorreosEnviados::select('*')
+                ->orderBy('created_at', 'DESC')
+                ->where('facturado', "SI")
+                ->get();
+              break;
 
           default:
-            return null;
+            $correos = CorreosEnviados::where('idCorreos', $option)->get();
+            if (!$correos) {
+                return null;
+            }
             break;
         }
 
@@ -67,6 +76,7 @@ class CorreosEnviados extends Model
             $correo->r_recorridos;
         }
 
+        // dd($correos);
         return $correos;
     }
 }

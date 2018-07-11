@@ -35,9 +35,8 @@ class FacturaController extends Controller
         // $pdf = \PDF::loadview('vendor.pdfs.generarFactura');
         // return $pdf->download('ejemplo.pdf');
         // return $valor;
-        
 
-        return $request->all();
+
         $factura = new Facturas();
         $factura->fill($request->all());
 

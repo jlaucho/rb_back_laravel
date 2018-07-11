@@ -12,7 +12,7 @@ use App\Models\Tabulador;
 
 class BusquedaController extends Controller
 {
-    public function por_coleccion($collection, $id)
+    public function por_coleccion($collection, $id = null)
     {
         // Se busca por coleccion en el swich
         switch ($collection) {
@@ -20,7 +20,7 @@ class BusquedaController extends Controller
               $busqueda = User::find($id);
           break;
 
-        case 'correo':
+        case 'servicio':
               $busqueda = CorreosEnviados::find($id);
           break;
 
@@ -34,14 +34,14 @@ class BusquedaController extends Controller
           break;
 
         case 'tabulador':
-              $busqueda = Tabulador::where('activo', 'SI')->first();
+              $busqueda = Tabulador::tabuladorActivo($id);
           break;
 
         default:
             // Sino se encuentra ninguna collecion retrna el mensaje de error
             return response()->json([
                 'ok'=>false,
-                'error'=>['coleccion'=>'Coleccion no permitida, solo se admite "usuario", "empresa", "correo", "tabulador" y "factura"']
+                'error'=>['coleccion'=>'Coleccion no permitida, solo se admite "usuario", "empresa", "servicio", "tabulador" y "factura"']
             ], 400);
             break;
         }

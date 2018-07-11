@@ -54,7 +54,7 @@ Route::group(['prefix'=>'user', 'namespace'=>'user\\'], function () {
  *
  */
 Route::group(['prefix' => 'buscar', 'namespace'=>'busqueda\\', 'middleware'=>'auth:api'], function () {
-    Route::get('{collection}/{id}', 'BusquedaController@por_coleccion')->name('busqueda.por_colleccion');
+    Route::get('{collection}/{id?}', 'BusquedaController@por_coleccion')->name('busqueda.por_colleccion');
 });
 /**
  *

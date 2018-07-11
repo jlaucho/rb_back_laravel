@@ -333,7 +333,7 @@
 						"pagadas"
 					]
 				},
-				"description": "Esta busqueda se realiza la busqueda por colleccion, tabaja con las opciones, todas, pendientes, pagadas o el id"
+				"description": "Esta busqueda se realiza la busqueda por colleccion, tabaja con las opciones, todas, pendientes, pagadas o el id.\n\nLas Opciones disponibles son:\n\nbuscar/usuario/{id}\nbuscar/correo/{id}\nbuscar/factura/todas\nbuscar/factura/pagadas\nbuscar/factura/pendientes/\nbuscar/factura/%like% numFactura\nbuscar/empresa/{id}\nbuscar/tabulador/activo\nbuscar/tabulador/inactivos\nbuscar/tabulador/todos\nbuscar/tabulador/{id}\n"
 			},
 			"response": []
 		},
@@ -356,19 +356,19 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "EJEMPLO",
+							"value": "PEPSICOLA VENEZUELA",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "RIF",
-							"value": "j-0006272-1",
+							"value": "j-0006272-3",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "direccion",
-							"value": "alguna direccion de la empresa",
+							"value": "alguna direccion de la para la prueba",
 							"description": "",
 							"type": "text"
 						},
@@ -539,13 +539,13 @@
 					"urlencoded": [
 						{
 							"key": "mensaje",
-							"value": "Buenos día, por medio de la presente adjunto el detalle de servicio prestado el día 27 del mes de Junio de 2018: (Servicio Prestado al Sra. Monica Rincon) ",
+							"value": "Buenos día, por medio de la presente adjunto el detalle de servicio prestado el día 03 del mes de Julio de 2018: (Servicio Prestado al Sra. Monica Rincon) ",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "fechaServicio",
-							"value": "2018-06-27",
+							"value": "2018-07-03",
 							"description": "",
 							"type": "text"
 						},
@@ -593,97 +593,13 @@
 						},
 						{
 							"key": "origen[]",
-							"value": "Pepsi N",
+							"value": "Mcbo",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "destino[]",
 							"value": "Modelo",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "cantidad[]",
-							"value": "1",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "concepto[]",
-							"value": "DesvExter",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "encomienda[]",
-							"value": "NO",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "nocturno[]",
-							"value": "NO",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "recorrido[]",
-							"value": "3000",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "origen[]",
-							"value": "Modelo",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "destino[]",
-							"value": "EFE",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "cantidad[]",
-							"value": "1",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "concepto[]",
-							"value": "DesvInter",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "encomienda[]",
-							"value": "NO",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "nocturno[]",
-							"value": "NO",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "recorrido[]",
-							"value": "3000",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "origen[]",
-							"value": "EFE",
-							"description": "",
-							"type": "text"
-						},
-						{
-							"key": "destino[]",
-							"value": "Pepsi N",
 							"description": "",
 							"type": "text"
 						},
@@ -713,7 +629,343 @@
 						},
 						{
 							"key": "recorrido[]",
-							"value": "3000",
+							"value": "11000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Modelo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvInter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "SI",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "7000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Polar II",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvInter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "SI",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "7000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Polar II",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvInter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "SI",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "7000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Polar II",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvInter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "SI",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "7000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Polar II",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvInter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "SI",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "7000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Mcbo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvExter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "11000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Mcbo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "DesvExter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "11000000",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "origen[]",
+							"value": "Trigo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "destino[]",
+							"value": "Modelo",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantidad[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "concepto[]",
+							"value": "desvInter",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "encomienda[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "nocturno[]",
+							"value": "NO",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "recorrido[]",
+							"value": "7000000",
 							"description": "",
 							"type": "text"
 						}
@@ -736,7 +988,7 @@
 			"response": []
 		},
 		{
-			"name": "Servicio: Lista",
+			"name": "Busqueda: Servicios",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -747,7 +999,7 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "{{url}}/api/v1/servicio/1",
+					"raw": "{{url}}/api/v1/servicio/17",
 					"host": [
 						"{{url}}"
 					],
@@ -755,10 +1007,10 @@
 						"api",
 						"v1",
 						"servicio",
-						"1"
+						"17"
 					]
 				},
-				"description": "Devuelve la lista de correos registrados en el sistema, estos a su vez trae la relacion con el conductor que realizo el servicio y el usuario que lo registro en el sistema. Trae tambien los recorridos correspondientes al traslado enviado por correo"
+				"description": "Devuelve la lista de correos registrados en el sistema, estos a su vez trae la relacion con el conductor que realizo el servicio y el usuario que lo registro en el sistema. Trae tambien los recorridos correspondientes al traslado enviado por correo.\n\nLas opciones son:\n\nservicio/facturados\nservicio/todos\nservicio/pendientes\nservicio/{id}"
 			},
 			"response": []
 		},
@@ -781,7 +1033,7 @@
 					"urlencoded": [
 						{
 							"key": "numFactura",
-							"value": "00406",
+							"value": "00408",
 							"description": "Numero de la factura",
 							"type": "text"
 						},
@@ -805,13 +1057,13 @@
 						},
 						{
 							"key": "empresas_id",
-							"value": "1",
+							"value": "2",
 							"description": "Enpresa a la cual se introdujo la factura",
 							"type": "text"
 						},
 						{
 							"key": "correo_id[]",
-							"value": "5",
+							"value": "14",
 							"description": "",
 							"type": "text"
 						},
@@ -835,8 +1087,38 @@
 						},
 						{
 							"key": "descripcion[]",
-							"value": "Maracaibo-Cabimas-Maracaibo",
+							"value": "esta es la descripcion",
 							"description": "descripcion del renglon del servicio realizado",
+							"type": "text"
+						},
+						{
+							"key": "correo_id[]",
+							"value": "15",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "cantServicios[]",
+							"value": "1",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "codigo[]",
+							"value": "TR006",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "ODC[]",
+							"value": "1012547854",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "descripcion[]",
+							"value": "Esta es la descripcion de la segunda factutra e una misma orden",
+							"description": "",
 							"type": "text"
 						}
 					]
@@ -888,13 +1170,13 @@
 						},
 						{
 							"key": "monto_pernocta",
-							"value": "25800000",
+							"value": "40000000",
 							"description": "",
 							"type": "text"
 						},
 						{
 							"key": "monto_horas",
-							"value": "6880000",
+							"value": "11008000",
 							"description": "",
 							"type": "text"
 						},
@@ -925,6 +1207,28 @@
 					]
 				},
 				"description": "Endpoint donde se guardan los valores del tabulador para realizar los calculos automaticos de los costos totales de los servicios"
+			},
+			"response": []
+		},
+		{
+			"name": "Practicas de Metodos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/datos/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"datos",
+						"1"
+					]
+				},
+				"description": "Esta rura se utiliza solo para tracticar metodos a razon de aprendizaje\n"
 			},
 			"response": []
 		}
