@@ -18,6 +18,8 @@
  *
  */
 
+Route::get('datos/{id}', 'datosController@datos')->name('datos');
+
 Route::group([
 
     // 'middleware' => 'api',
