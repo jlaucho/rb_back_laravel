@@ -52,6 +52,7 @@ class UserCreateRequest extends FormRequest
           'apellido.required' => 'El apellido es obligatorio',
           'apellido.max'      => 'El apellido no puede exceder los :max caracteres',
           'cedula.required'   => 'La cedula es obligatiria',
+          'cedula.unique'     => 'La cedula '. $this->cedula .', ya se encuentra registrada',
           'direccion.required'=> 'La direccion es obligatoria',
           'direccion.max'     => 'La direccion no puede exceder mas de :max caracteres',
           'type.required'     => 'El tipo de usuario es obligatorio',

@@ -86,7 +86,7 @@ class Handler extends ExceptionHandler
         } else
         // Excepciones de Validacion disparadas por los request
         if ($exception instanceof ValidationException) {
-          return response()->json(['ok'=>false, 'error' => $exception->errors()], 422);
+          return response()->json(['ok'=>false, 'error' => $exception->errors()], 400);
         }
         // return $exception;
         return response()->json(['ok'=>false, 'error' => ['error' => $exception->getMessage()]], 500);
