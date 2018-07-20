@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        'name', 'apellido','direccion', 'cedula', 'email', 'type', 'password', 'created_at',
+        'name', 'apellido','direccion', 'telefono', 'cedula', 'email', 'type', 'password', 'created_at',
     ];
 
     /**
