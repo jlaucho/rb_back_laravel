@@ -65,4 +65,15 @@ class User extends Authenticatable implements JWTSubject
       {
         return $this->hasMany('App\Models\CorreosEnviados', 'realizado_por', 'id');
       }
+
+    /**
+     *
+     * Function Static of method
+     *
+     *
+     */
+    public static function emailTaken( $email ) {
+        return User::where('email', $email)->get()->first();
+    }
+    
 }

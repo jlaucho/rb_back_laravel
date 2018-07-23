@@ -98,3 +98,11 @@ Route::group(['prefix' => 'tabulador', 'namespace'=>'tabulador\\','middleware'=>
     Route::post('', 'tabuladorController@store')->name('tabulador.store');
     Route::get('', 'tabuladorController@index')->name('tabulador.index');
 });
+/**
+ *
+ * Rutas de Validaciones ASINCRONAS
+ *
+ */
+Route::group(['prefix' => 'validators', 'namespace'=>'async\\'], function() {
+    Route::get('emailtaken/{email}', 'validatorsController@emailTaken')->name('validators.emailtaken');
+});
