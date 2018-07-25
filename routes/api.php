@@ -72,7 +72,7 @@ Route::group(['prefix' => 'empresa', 'namespace'=>'empresa\\', 'middleware'=>'au
  * Rutas de Servicios en el sistema
  *
  */
-Route::group(['prefix' => 'servicio', 'namespace'=>'servicios\\', 'middleware'=>'auth:api'], function () {
+Route::group(['prefix' => 'servicio', 'namespace'=>'servicios\\'], function () {
     Route::post('store', 'ServiciosController@store')->name('servicio.store');
     Route::get('{option?}', 'ServiciosController@correoList')->name('servicio.list');
     // Route::put('/{id}', 'CorreosEnviadosController@update')->name('correo.update');
