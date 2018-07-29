@@ -1231,6 +1231,29 @@
 				"description": "Esta rura se utiliza solo para tracticar metodos a razon de aprendizaje\n"
 			},
 			"response": []
+		},
+		{
+			"name": "Validators: email Taken",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "{{url}}/api/v1/validators/emailtaken/jlaucho@gmail.com",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"validators",
+						"emailtaken",
+						"jlaucho@gmail.com"
+					]
+				},
+				"description": "Esta opcion devuelve null o datos del usuario si existe"
+			},
+			"response": []
 		}
 	]
 }
