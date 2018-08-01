@@ -30,5 +30,18 @@ class Empresas extends Model
       {
         return $this->hasMany('App\Models\Facturas', 'empresas_id', 'idEmpresas');
       }
+
+      /**
+       *
+       * Function static of table
+       *
+       */
+
+      public static function existe ( $campo, $valor ) {
+        
+        $respuesta = Empresas::where($campo, $valor)->first();
+        return $respuesta;
+      }
+      
     
 }

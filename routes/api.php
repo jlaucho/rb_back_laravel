@@ -103,6 +103,7 @@ Route::group(['prefix' => 'tabulador', 'namespace'=>'tabulador\\','middleware'=>
  * Rutas de Validaciones ASINCRONAS
  *
  */
-Route::group(['prefix' => 'validators', 'namespace'=>'async\\'], function() {
+Route::group(['prefix' => 'validators', 'namespace'=>'async\\', 'middleware'=>'auth:api'], function() {
     Route::get('emailtaken/{email}', 'validatorsController@emailTaken')->name('validators.emailtaken');
+    Route::get('empresaexiste/{campo}/{valor}', 'validatorsController@existe')->name('validators.empresaexiste');
 });
