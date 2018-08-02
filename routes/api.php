@@ -46,6 +46,7 @@ Route::group(['prefix'=>'user', 'namespace'=>'user\\'], function () {
         Route::get('', 'UserController@userList')->name('user.list');
         Route::put('/{id}', 'UserController@update')->name('user.update');
         Route::delete('/{id}', 'UserController@delete')->name('user.delete');
+        Route::get('/{id}', 'UserController@show')->name('user.show');
     });
 });
 /**

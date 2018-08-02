@@ -119,11 +119,11 @@ class UserController extends Controller
     {
         $user = User::find($idUser);
         if (!$user) {
-            return response()->json([
-        'ok'=>false,
-        'error'=>['mensaje'=>'No existen usuarios registrados con el id '. $idUser],
-        'user'=>null
-      ], 400);
+          return response()->json([
+            'ok'=>false,
+            'error'=>['mensaje'=>'No existen usuarios registrados con el id '. $idUser],
+            'user'=>null
+          ], 400);
         }
 
         $user->delete();
@@ -133,4 +133,26 @@ class UserController extends Controller
       ], 202);
     }
     /*---------------------------------------------------------------------------------------*/
+    /**
+     *
+     * GET method, show user from database
+     * @param $idUser
+     * @return Collection the user find
+     *
+     */
+    public function show ( $id ) {
+      $user = User::find( $id );
+      if( !$user ){
+        return response()->json([
+          'ok'  => false,
+          'error' => ['mensaje' => 'No existen usuarios registrados con el id '.$id],
+          'user'  => null
+        ], 400);
+      }
+
+        return response()->json([
+          'ok' => true,
+          'user' => $user
+        ], 200);
+    }
 }
