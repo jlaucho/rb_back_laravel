@@ -56,12 +56,29 @@ class UserController extends Controller
     * @method GET
     *
     */
-    public function userList(Request $request)
+    public function userList($parametro)
     {
+      // return response()->json([$parametro, 200]);
+
+      $permitidas = ['todos', 'activos', 'inactivos'];
+      if ( ! in_array($parametro, $permitidas) ) {
+        return response()->json([
+          'ok' => false,
+          'users' => null,
+          'error' => ['busqueda' => 'Los parametros permitidos son "todos", "activos" e "inactivos"']
+          ], 400);
+      }
+
         try {
-            $users = User::select('*')
-              ->orderBy('name')
-              ->get();
+            $users = User::select('*');
+              if( $parametro === 'todos' ) {
+                  $users->withTrashed();
+                } else if( $parametro === 'inactivos' ) {
+                  $users->onlyTrashed();
+                }
+
+              $users->orderBy('name');
+              $users = $users->get();
             $total = $users->count();
 
             return response()->json([
