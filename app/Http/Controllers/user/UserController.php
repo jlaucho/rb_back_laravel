@@ -59,7 +59,9 @@ class UserController extends Controller
     public function userList(Request $request)
     {
         try {
-            $users = User::all();
+            $users = User::select('*')
+              ->orderBy('name')
+              ->get();
             $total = $users->count();
 
             return response()->json([
