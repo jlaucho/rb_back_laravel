@@ -146,6 +146,7 @@ class UserController extends Controller
         }
 
         $user->delete();
+        
         return response()->json([
         'ok'=>true,
         'user'=>$user
@@ -173,5 +174,32 @@ class UserController extends Controller
           'ok' => true,
           'user' => $user
         ], 200);
+    }
+    /*---------------------------------------------------------------------------------------*/
+    /**
+     *
+     * GET method, show user from database
+     * @param $idUser
+     * @return Collection the user find
+     *
+     */
+    public function reactivar ( Request $request ) {
+      // return $request->id;
+      $user = User::onlyTrashed()
+        ->where('id', $request->id)
+        ->first();
+      // return $user;
+      if( !$user ){
+        return response()->json([
+          'ok'  => false,
+          'error' => ['mensaje' => 'No existen usuarios registrados con el id '.$request->id],
+          'user'  => null
+        ], 400);
+      }
+      $user->restore();
+      return response()->json([
+        'ok' => true,
+        'user' => $user
+      ], 200);
     }
 }
