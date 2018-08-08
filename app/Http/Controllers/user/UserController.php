@@ -78,7 +78,7 @@ class UserController extends Controller
                 }
 
               $users->orderBy('name');
-              $users = $users->get();
+              $users = $users->paginate(5);
             $total = $users->count();
 
             return response()->json([
