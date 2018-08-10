@@ -56,9 +56,9 @@ class UserController extends Controller
     * @method GET
     *
     */
-    public function userList($parametro)
+    public function userList($parametro, $palabra = NULL)
     {
-      // return response()->json([$parametro, 200]);
+      // return response()->json([$palabra, 200]);
 
       $permitidas = ['todos', 'activos', 'inactivos'];
       if ( ! in_array($parametro, $permitidas) ) {
@@ -70,13 +70,16 @@ class UserController extends Controller
       }
 
         try {
-            $users = User::select('*');
+            $users = User::select('*')
+              ->where('email', 'like', '%'.$palabra.'%')
+              ->orWhere('name', 'like', '%'.$palabra.'%')
+              ->orWhere('type', 'like', '%'.$palabra.'%')
+              ->orWhere('telefono', 'like', '%'.$palabra.'%');
               if( $parametro === 'todos' ) {
                   $users->withTrashed();
                 } else if( $parametro === 'inactivos' ) {
                   $users->onlyTrashed();
                 }
-
               $users->orderBy('name');
               $users = $users->paginate(5);
             $total = $users->count();

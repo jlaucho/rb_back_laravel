@@ -44,7 +44,7 @@ Route::group(['prefix'=>'user', 'namespace'=>'user\\'], function () {
     // rutas con proteccion de token
     Route::group(['middleware' => 'auth:api'], function ($router) {
         Route::post('reactivar', 'UserController@reactivar')->name('user.reactivar');
-        Route::get('/{parametro}', 'UserController@userList')->name('user.list');
+        Route::get('/{parametro}/{palabra?}', 'UserController@userList')->name('user.list');
         Route::put('/{id}', 'UserController@update')->name('user.update');
         Route::delete('/{id}', 'UserController@delete')->name('user.delete');
         Route::get('/{id}', 'UserController@show')->name('user.show');
