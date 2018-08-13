@@ -9,7 +9,7 @@ class Tabulador extends Model
     protected $table 			  = 'tabuladors';
     protected $primaryKey 	= 'id';
     protected $fillable 		= [
-        'por_bono_nocturno', 'por_encomienda' , 'monto_pernocta' , 'monto_horas', 'por_fin_semana', 'monto_desv_inter', 'monto_desv_exter'
+        'por_bono_nocturno', 'por_encomienda' , 'monto_pernocta' , 'monto_horas', 'por_fin_semana', 'monto_desv_inter', 'monto_desv_exter', 'fecha_inicio'
     ];
 
     public static function tabuladorActivo($collection)

@@ -16,6 +16,7 @@ class AddColumnsTabulador extends Migration
         Schema::table('tabuladors', function (Blueprint $table) {
             $table->float('monto_desv_inter', 12, 2)->nullable();
             $table->float('monto_desv_exter', 12, 2)->nullable();
+            $table->date('fecha_inicio')->nullable();
         });
     }
 
