@@ -24,6 +24,8 @@ class EmpresaController extends Controller
 
   		$empresa->save();
 
+      // dd($empresa);
+
   		return response()->json([
   			'ok'=> true,
   			'empresa'=>$empresa,
