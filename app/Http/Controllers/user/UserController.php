@@ -205,4 +205,34 @@ class UserController extends Controller
         'user' => $user
       ], 200);
     }
+
+    /*---------------------------------------------------------------------------------------*/
+    /**
+    *
+    * List the Users
+    * @return list
+    * @param null
+    * @method GET
+    *
+    */
+    public function userRegister()
+    {
+         try {
+            $users = User::select('*')
+              ->orderBy('name')
+              ->get();
+
+
+            return response()->json([
+        'ok' => true,
+        'users' => $users
+      ], 200);
+        } catch (\Exception $e) {
+            return response()->json([
+        'ok' => false,
+        'users' => null,
+        'error' => ['busqueda' => 'Error al buscar usuarios en el sistema']
+      ], 500);
+        }
+    }
 }
