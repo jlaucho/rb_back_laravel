@@ -21,7 +21,6 @@ class ServiciosController extends Controller
     public function store(Request $request)
     {
 
-        return response()->json( $request->all(), 200 );
         $tabulador = Tabulador::tabuladorActivo('activo')->first();
         if (!$tabulador) {
             return response()->json([
@@ -29,6 +28,7 @@ class ServiciosController extends Controller
             'mensaje' => 'No existe tabulador activo'
           ], 202);
         }
+        // return response()->json( $tabulador, 200 );
         // return $request->all();
         $correo = new CorreosEnviados();
         $correo->fill($request->all());
@@ -48,19 +48,19 @@ class ServiciosController extends Controller
                 // Se verifica si es un Servicio interno o externo
                 // de lo contrario se obtiene el valor suministrado por teclado
                 $recorrido->concepto = $request->concepto[$key];
-                // return response()->json(['respuestaRequest'=> $request->all()], 200);
                 switch ($recorrido->concepto) {
                     case 'DesvInter':
-                        $recorrido->recorrido = $tabulador->monto_desv_exter;
+                        $recorrido->recorrido = $tabulador->monto_desv_inter;
                         break;
                     case 'DesvExter':
-                        $recorrido->recorrido = $tabulador->monto_desv_inter;
+                        $recorrido->recorrido = $tabulador->monto_desv_exter;
                         break;
                     
                     default:
                         $recorrido->recorrido = $request->recorrido[$key];
                         break;
                 }
+                // return response()->json(['respuestaRequest'=> $recorrido], 200);
                 $recorrido->totalRecorrido = $recorrido->cantidad * $recorrido->recorrido;
                 $recorrido->encomienda = $request->encomienda[$key];
                 $recorrido->nocturno = $request->nocturno[$key];
