@@ -17,11 +17,11 @@ class BusquedaController extends Controller
         // Se busca por coleccion en el swich
         switch ($collection) {
         case 'usuario':
-              $busqueda = User::find($id);
+              $busqueda = User::where('id', $id)->get();
           break;
 
         case 'servicio':
-              $busqueda = CorreosEnviados::find($id);
+              $busqueda = CorreosEnviados::where('idCorreos', $id)->get();
           break;
 
         case 'factura':
@@ -30,7 +30,7 @@ class BusquedaController extends Controller
           break;
 
         case 'empresa':
-              $busqueda = Empresas::find($id);
+              $busqueda = Empresas::where('idEmpresas', $id)->get();
           break;
 
         case 'tabulador':

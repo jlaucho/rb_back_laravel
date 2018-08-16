@@ -20,7 +20,9 @@ class ServiciosController extends Controller
     */
     public function store(Request $request)
     {
-        $tabulador = Tabulador::tabuladorActivo('activo');
+
+        return response()->json( $request->all(), 200 );
+        $tabulador = Tabulador::tabuladorActivo('activo')->first();
         if (!$tabulador) {
             return response()->json([
             'ok'=>false,
@@ -43,8 +45,22 @@ class ServiciosController extends Controller
                 $recorrido->origen = $request->origen[$key];
                 $recorrido->destino = $request->destino[$key];
                 $recorrido->cantidad = $request->cantidad[$key];
+                // Se verifica si es un Servicio interno o externo
+                // de lo contrario se obtiene el valor suministrado por teclado
                 $recorrido->concepto = $request->concepto[$key];
-                $recorrido->recorrido = $request->recorrido[$key];
+                // return response()->json(['respuestaRequest'=> $request->all()], 200);
+                switch ($recorrido->concepto) {
+                    case 'DesvInter':
+                        $recorrido->recorrido = $tabulador->monto_desv_exter;
+                        break;
+                    case 'DesvExter':
+                        $recorrido->recorrido = $tabulador->monto_desv_inter;
+                        break;
+                    
+                    default:
+                        $recorrido->recorrido = $request->recorrido[$key];
+                        break;
+                }
                 $recorrido->totalRecorrido = $recorrido->cantidad * $recorrido->recorrido;
                 $recorrido->encomienda = $request->encomienda[$key];
                 $recorrido->nocturno = $request->nocturno[$key];

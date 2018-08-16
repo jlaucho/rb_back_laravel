@@ -17,7 +17,7 @@ class Tabulador extends Model
         switch ($collection) {
 
           case 'activo':
-            $data = Tabulador::where('activo', 'SI')->first();
+            $data = Tabulador::where('activo', 'SI')->get();
           break;
 
           case 'inactivos':
