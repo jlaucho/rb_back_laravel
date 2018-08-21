@@ -132,8 +132,10 @@ class ServiciosController extends Controller
     */
     public function correoList($option = null)
     {
+        // return 'Estamos aca';
         try {
             $correos = CorreosEnviados::datosCorreo($option);
+            // return $correos;
             // dd($correos);
             if (!$correos) {
                 return response()->json([
@@ -142,7 +144,7 @@ class ServiciosController extends Controller
               ], 400);
             }
 
-            $total = $correos->count();
+            $total = $correos[0]->totalGeneral;
             return response()->json([
               'ok' => true,
               'total'=>$total,
@@ -152,7 +154,8 @@ class ServiciosController extends Controller
             return response()->json([
               'ok' => false,
               'correo' => null,
-              'error' => ['busqueda' => 'Error al buscar el servicio en el sistema']
+              'error' => $e
+              // 'error' => ['busqueda' => 'Error al buscar el servicio en el sistema']
             ], 500);
         }
     }

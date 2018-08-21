@@ -35,6 +35,7 @@ class CorreosEnviados extends Migration
             $table->integer('registrado_por')->unsigned()->comment('Guarda el usuario que registro el servicio en el sistema');
             $table->foreign('registrado_por')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

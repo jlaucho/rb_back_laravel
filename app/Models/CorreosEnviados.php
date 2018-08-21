@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CorreosEnviados extends Model
 {
+  // use SoftDeletes;
+
+    protected $dates        = ['deleted_at'];
     protected $table 			  = 'correosEnviados';
     protected $primaryKey 	= 'idCorreos';
     protected $fillable 		= [
@@ -46,37 +50,41 @@ class CorreosEnviados extends Model
         switch ($option) {
           case 'todos':
             $correos = CorreosEnviados::select('*')
-                ->orderBy('created_at', 'DESC')
-                ->get();
+                ->orderBy('created_at', 'DESC');
+                $temp = $correos->sum('totalMonto');
+                $correos = $correos->paginate(25);
+
             break;
           case 'pendientes':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')
-                ->where('facturado', "NO")
-                ->get();
+                ->where('facturado', "NO");
+                $temp = $correos->sum('totalMonto');
+                $correos = $correos->paginate(25);
               break;
           case 'facturados':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')
-                ->where('facturado', "SI")
-                ->get();
+                ->where('facturado', "SI");
+                $temp = $correos->sum('totalMonto');
+                $correos = $correos->paginate(25);
               break;
 
           default:
-            $correos = CorreosEnviados::where('idCorreos', $option)->get();
+            $correos = CorreosEnviados::where('idCorreos', $option)->paginate(25);
             if (!$correos) {
                 return null;
             }
             break;
         }
-
         foreach ($correos as $key => $correo) {
+
             $correo->r_realizado;
             $correo->r_registrado;
             $correo->r_recorridos;
         }
-
-        // dd($correos);
+        $correos[0]->totalGeneral = $temp;
+        // return $correos->totalFacturado;
         return $correos;
     }
 }
