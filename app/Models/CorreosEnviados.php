@@ -51,32 +51,29 @@ class CorreosEnviados extends Model
           case 'todos':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC');
-                $temp = $correos->sum('totalMonto');
-                $correos = $correos->paginate(25);
-
-            break;
+              break;
           case 'pendientes':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')
                 ->where('facturado', "NO");
-                $temp = $correos->sum('totalMonto');
-                $correos = $correos->paginate(25);
               break;
           case 'facturados':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')
                 ->where('facturado', "SI");
-                $temp = $correos->sum('totalMonto');
-                $correos = $correos->paginate(25);
               break;
 
           default:
-            $correos = CorreosEnviados::where('idCorreos', $option)->paginate(25);
-            if (!$correos) {
-                return null;
-            }
+            $correos = CorreosEnviados::where('idCorreos', $option);
             break;
         }
+
+        if (!$correos->count()) {
+            return null;
+        }
+        $temp = $correos->sum('totalMonto');
+        $correos = $correos->paginate(25);
+
         foreach ($correos as $key => $correo) {
 
             $correo->r_realizado;

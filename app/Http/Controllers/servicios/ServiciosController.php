@@ -132,32 +132,24 @@ class ServiciosController extends Controller
     */
     public function correoList($option = null)
     {
-        // return 'Estamos aca';
-        try {
-            $correos = CorreosEnviados::datosCorreo($option);
-            // return $correos;
-            // dd($correos);
-            if (!$correos) {
-                return response()->json([
-                'ok' => false,
-                'mensaje'=>'No existen correos registrados con esa opcion',
-              ], 400);
-            }
+      $correos = CorreosEnviados::datosCorreo($option);
+      // return $correos;
+      // dd($correos);
+      if (!$correos) {
+          return response()->json([
+          'ok' => false,
+          'total' => 0,
+          'mensaje'=>'No existen correos registrados con esa opcion',
+        ], 400);
+      }
 
-            $total = $correos[0]->totalGeneral;
-            return response()->json([
-              'ok' => true,
-              'total'=>$total,
-              'correos' => $correos
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-              'ok' => false,
-              'correo' => null,
-              'error' => $e
-              // 'error' => ['busqueda' => 'Error al buscar el servicio en el sistema']
-            ], 500);
-        }
+      $total = $correos[0]->totalGeneral;
+      return response()->json([
+        'ok' => true,
+        'total'=>$total,
+        'correos' => $correos
+      ], 200);
+        
     }
     /*---------------------------------------------------------------------------------------*/
 }
