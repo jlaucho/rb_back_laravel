@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/costo', function () {
+
+    return new App\Mail\CostoServicio();
+});

@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\CorreosEnviados;
 use App\Models\Recorridos;
 use App\Models\Tabulador;
+use Mail;
+use App\Mail\CostoServicio;
+use App\Jobs\SendMail;
 
 class ServiciosController extends Controller
 {
@@ -29,9 +32,10 @@ class ServiciosController extends Controller
           ], 202);
         }
         // return response()->json( $tabulador, 200 );
-        // return $request->all();
         $correo = new CorreosEnviados();
         $correo->fill($request->all());
+        $correo->fechaServicio = new \Carbon\Carbon($request->fechaServicio);
+        // return $correo;
         $correo->registrado_por = auth()->user()->id;
         $correo->save();
 
@@ -115,6 +119,18 @@ class ServiciosController extends Controller
             $correo->totalMonto += $montoTotalFinSemana + $montoTotalPernocta;
             $correo->save();
         }
+        // try {
+            
+        // Mail::to('jlaucho@gmail.com')
+        //     ->send(new CostoServicio());
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //     'ok'=> true,
+        //     'mensaje'=>'FALLO EL ENVIO DE CORREO, REALICELO '. $correo->totalMonto
+        // ], 201);            
+        // }
+        SendMail::dispatch('jlaucho@gmail.com')
+            ->delay(now()->addSeconds(10));
 
         return response()->json([
             'ok'=> true,
