@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Models\CorreosEnviados;
 use App\Models\Recorridos;
 use App\Models\Tabulador;
+use Mail;
+use App\Mail\CostoServicio;
+use App\Jobs\SendMail;
 
 class ServiciosController extends Controller
 {
@@ -29,9 +32,10 @@ class ServiciosController extends Controller
           ], 202);
         }
         // return response()->json( $tabulador, 200 );
-        // return $request->all();
         $correo = new CorreosEnviados();
         $correo->fill($request->all());
+        $correo->fechaServicio = new \Carbon\Carbon($request->fechaServicio);
+        // return $correo;
         $correo->registrado_por = auth()->user()->id;
         $correo->save();
 
@@ -115,6 +119,18 @@ class ServiciosController extends Controller
             $correo->totalMonto += $montoTotalFinSemana + $montoTotalPernocta;
             $correo->save();
         }
+        // try {
+            
+        // Mail::to('jlaucho@gmail.com')
+        //     ->send(new CostoServicio());
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //     'ok'=> true,
+        //     'mensaje'=>'FALLO EL ENVIO DE CORREO, REALICELO '. $correo->totalMonto
+        // ], 201);            
+        // }
+        SendMail::dispatch('jlaucho@gmail.com')
+            ->delay(now()->addSeconds(10));
 
         return response()->json([
             'ok'=> true,
@@ -132,32 +148,24 @@ class ServiciosController extends Controller
     */
     public function correoList($option = null)
     {
-        // return 'Estamos aca';
-        try {
-            $correos = CorreosEnviados::datosCorreo($option);
-            // return $correos;
-            // dd($correos);
-            if (!$correos) {
-                return response()->json([
-                'ok' => false,
-                'mensaje'=>'No existen correos registrados con esa opcion',
-              ], 400);
-            }
+      $correos = CorreosEnviados::datosCorreo($option);
+      // return $correos;
+      // dd($correos);
+      if (!$correos) {
+          return response()->json([
+          'ok' => false,
+          'total' => 0,
+          'mensaje'=>'No existen correos registrados con esa opcion',
+        ], 400);
+      }
 
-            $total = $correos[0]->totalGeneral;
-            return response()->json([
-              'ok' => true,
-              'total'=>$total,
-              'correos' => $correos
-            ], 200);
-        } catch (\Exception $e) {
-            return response()->json([
-              'ok' => false,
-              'correo' => null,
-              'error' => $e
-              // 'error' => ['busqueda' => 'Error al buscar el servicio en el sistema']
-            ], 500);
-        }
+      $total = $correos[0]->totalGeneral;
+      return response()->json([
+        'ok' => true,
+        'total'=>$total,
+        'correos' => $correos
+      ], 200);
+        
     }
     /*---------------------------------------------------------------------------------------*/
 }
