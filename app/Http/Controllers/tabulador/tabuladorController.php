@@ -11,9 +11,13 @@ class tabuladorController extends Controller
 {
     public function store(TabuladorCreateRequest $request)
     {
+//        return response()->json([
+//            'ok'=>false,
+//            'mensaje' => 'El tabulador se registro correctamente',
+//            'tabulador' => $request->all()
+//        ], 200);
         // Se busca si existe un tabulador anterior para inhabilitar
         $tabulador = Tabulador::where('activo', 'SI')->first();
-        // return response()->json(['tabulador'=> $tabulador]);
         if ($tabulador) {
             $tabulador->activo = "NO";
             $tabulador->save();
@@ -21,6 +25,7 @@ class tabuladorController extends Controller
         // Se cargan todos los datos provenientes del Request
         $tabulador = new Tabulador();
         $tabulador->fill($request->all());
+        $tabulador->fecha_inicio = new \Carbon\Carbon($request->fecha_inicio);
 
         $tabulador->save();
 
