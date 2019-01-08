@@ -110,3 +110,11 @@ Route::group(['prefix' => 'validators', 'namespace'=>'async\\', 'middleware'=>'a
     Route::get('emailtaken/{email}', 'validatorsController@emailTaken')->name('validators.emailtaken');
     Route::get('empresaexiste/{campo}/{valor}', 'validatorsController@existe')->name('validators.empresaexiste');
 });
+/**
+ *
+ * Rutas para practicar cosas nuevas
+ *
+ */
+Route::group(['prefix' => 'practica', 'namespace'=>'Practica\\'], function() {
+    Route::get('', 'PracticaController@index')->name('practica.index');
+});
