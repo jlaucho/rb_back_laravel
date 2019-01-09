@@ -119,11 +119,7 @@
                 "crossdomain",
                 "laravel"
             ],
-<<<<<<< HEAD
             "time": "2018-09-06 13:20:53"
-=======
-            "time": "2018-09-06T13:20:53+00:00"
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
         },
         {
             "name": "barryvdh/laravel-dompdf",
@@ -179,11 +175,7 @@
                 "laravel",
                 "pdf"
             ],
-<<<<<<< HEAD
             "time": "2018-08-31 13:25:44"
-=======
-            "time": "2018-08-31T13:25:44+00:00"
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
         },
         {
             "name": "defuse/php-encryption",
@@ -1114,7 +1106,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
             "version": "v5.6.39",
             "source": {
                 "type": "git",
@@ -1125,18 +1116,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/37bb306f516669ab4f888c16003f694313ab299e",
                 "reference": "37bb306f516669ab4f888c16003f694313ab299e",
-=======
-            "version": "v5.6.38",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "38d838bab9434af79e8ab274ae63f52f7ed45d6e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/38d838bab9434af79e8ab274ae63f52f7ed45d6e",
-                "reference": "38d838bab9434af79e8ab274ae63f52f7ed45d6e",
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
                 "shasum": ""
             },
             "require": {
@@ -1262,11 +1241,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
             "time": "2018-10-04 14:50:41"
-=======
-            "time": "2018-09-04T13:15:09+00:00"
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
         },
         {
             "name": "laravel/passport",
@@ -2384,7 +2359,6 @@
         },
         {
             "name": "psy/psysh",
-<<<<<<< HEAD
             "version": "v0.9.9",
             "source": {
                 "type": "git",
@@ -2395,18 +2369,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/bobthecow/psysh/zipball/9aaf29575bb8293206bb0420c1e1c87ff2ffa94e",
                 "reference": "9aaf29575bb8293206bb0420c1e1c87ff2ffa94e",
-=======
-            "version": "v0.9.8",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/bobthecow/psysh.git",
-                "reference": "ed3c32c4304e1a678a6e0f9dc11dd2d927d89555"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/bobthecow/psysh/zipball/ed3c32c4304e1a678a6e0f9dc11dd2d927d89555",
-                "reference": "ed3c32c4304e1a678a6e0f9dc11dd2d927d89555",
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
                 "shasum": ""
             },
             "require": {
@@ -2467,7 +2429,6 @@
                 "interactive",
                 "shell"
             ],
-<<<<<<< HEAD
             "time": "2018-10-13 15:16:03"
         },
         {
@@ -2509,9 +2470,6 @@
             ],
             "description": "A polyfill for getallheaders.",
             "time": "2016-02-11 07:05:27"
-=======
-            "time": "2018-09-05T11:40:09+00:00"
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
         },
         {
             "name": "ramsey/uuid",
@@ -4050,11 +4008,7 @@
                 "psr",
                 "psr-7"
             ],
-<<<<<<< HEAD
             "time": "2018-09-05 19:29:37"
-=======
-            "time": "2018-09-05T19:29:37+00:00"
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
         }
     ],
     "packages-dev": [
@@ -5019,7 +4973,6 @@
         },
         {
             "name": "phpunit/phpunit",
-<<<<<<< HEAD
             "version": "7.5.1",
             "source": {
                 "type": "git",
@@ -5030,18 +4983,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c23d78776ad415d5506e0679723cb461d71f488f",
                 "reference": "c23d78776ad415d5506e0679723cb461d71f488f",
-=======
-            "version": "7.3.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "0356331bf62896dc56e3a15030b23b73f38b2935"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/0356331bf62896dc56e3a15030b23b73f38b2935",
-                "reference": "0356331bf62896dc56e3a15030b23b73f38b2935",
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
                 "shasum": ""
             },
             "require": {
@@ -5112,11 +5053,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
             "time": "2018-12-12 07:20:32"
-=======
-            "time": "2018-09-05T09:58:53+00:00"
->>>>>>> 7540a17a7218ac7cefa5871607e9dbfac8a76612
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
