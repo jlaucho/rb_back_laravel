@@ -31,11 +31,9 @@ class ServiciosController extends Controller
             'mensaje' => 'No existe tabulador activo'
           ], 202);
         }
-        // return response()->json( $tabulador, 200 );
         $correo = new CorreosEnviados();
         $correo->fill($request->all());
         $correo->fechaServicio = new \Carbon\Carbon($request->fechaServicio);
-        // return $correo;
         $correo->registrado_por = auth()->user()->id;
         $correo->save();
 
@@ -119,23 +117,22 @@ class ServiciosController extends Controller
             $correo->totalMonto += $montoTotalFinSemana + $montoTotalPernocta;
             $correo->save();
         }
-        // try {
-            
-        // Mail::to('jlaucho@gmail.com')
-        //     ->send(new CostoServicio());
-        // } catch (\Exception $e) {
-        //     return response()->json([
-        //     'ok'=> true,
-        //     'mensaje'=>'FALLO EL ENVIO DE CORREO, REALICELO '. $correo->totalMonto
-        // ], 201);            
-        // }
-        SendMail::dispatch('jlaucho@gmail.com')
-            ->delay(now()->addSeconds(10));
+//         try {
+//
+//            SendMail::dispatch('jlaucho@gmail.com')
+//                ->delay(now()->addSeconds(10));
+//         } catch (\Exception $e) {
+//             return response()->json([
+//                'ok'=> true,
+//                'mensaje'=>'FALLO EL ENVIO DE CORREO, REALICELO '. $correo->totalMonto
+//            ], 501);
+//         }
+
 
         return response()->json([
             'ok'=> true,
             'mensaje'=>'El registro se creo correctamente por un monto de '. $correo->totalMonto
-        ], 201);
+        ], 200);
     }
     /*---------------------------------------------------------------------------------------*/
     /**
