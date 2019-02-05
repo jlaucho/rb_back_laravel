@@ -20,7 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('telefono', 16);
             $table->string('cedula', 12);
             $table->string('email')->unique();
-            $table->enum('type', ['superAdmin', 'admin', 'user', 'conductor'])->default('user');
+            $table->boolean('isActive')->default(1);
+            $table->enum('type', ['superAdmin', 'admin', 'user', 'conductor', 'usuario'])->default('user');
             $table->string('password');
             $table->softDeletes();
             $table->rememberToken();

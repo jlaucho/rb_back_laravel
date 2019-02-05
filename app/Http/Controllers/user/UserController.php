@@ -235,4 +235,38 @@ class UserController extends Controller
       ], 500);
         }
     }
+
+    public function usuarios() {
+        $users = User::where([['type', 'usuario'],['isActive', true]])->get();
+
+        if(!$users->count()){
+            return response()->json([
+                'ok'  => false,
+                'error' => ['mensaje' => 'No existen usuarios registrados'],
+                'users'  => null
+            ], 400);
+        }
+
+        return response()->json([
+            'ok'  => true,
+            'users'  => $users
+        ], 200);
+    }
+
+    public function conductores() {
+        $conductores = User::where([['type', '!=', 'usuario'],['isActive', true]])->get();
+
+        if(!$conductores->count()){
+            return response()->json([
+                'ok'  => false,
+                'error' => ['mensaje' => 'No existen usuarios registrados'],
+                'conductores'  => null
+            ], 400);
+        }
+
+        return response()->json([
+            'ok'  => true,
+            'conductores'  => $conductores
+        ], 200);
+    }
 }

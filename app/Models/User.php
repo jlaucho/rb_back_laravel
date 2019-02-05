@@ -22,7 +22,7 @@ class User extends Authenticatable implements JWTSubject
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        'name', 'apellido','direccion', 'telefono', 'cedula', 'email', 'type', 'password', 'created_at',
+        'name', 'apellido','direccion', 'telefono', 'cedula', 'email', 'type', 'isActive', 'password', 'created_at',
     ];
 
     /**
@@ -32,6 +32,10 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $casts = [
+        'isActive' => 'boolean'
     ];
 
     // Rest omitted for brevity

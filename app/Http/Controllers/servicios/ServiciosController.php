@@ -155,7 +155,7 @@ class ServiciosController extends Controller
           return response()->json([
           'ok' => false,
           'total' => 0,
-          'mensaje'=>'No existen correos registrados con esa opcion',
+          'mensaje'=>'No existen Servicios registrados con esa opcion',
         ], 400);
       }
 
