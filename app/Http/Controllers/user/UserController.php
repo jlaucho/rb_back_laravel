@@ -58,8 +58,6 @@ class UserController extends Controller
     */
     public function userList($parametro, $palabra = NULL)
     {
-      // return response()->json([$palabra, 200]);
-
       $permitidas = ['todos', 'activos', 'inactivos'];
       if ( ! in_array($parametro, $permitidas) ) {
         return response()->json([
@@ -70,32 +68,38 @@ class UserController extends Controller
       }
 
         try {
-            $users = User::select('*')
-              ->where('email', 'like', '%'.$palabra.'%')
-              ->orWhere('name', 'like', '%'.$palabra.'%')
-              ->orWhere('type', 'like', '%'.$palabra.'%')
-              ->orWhere('telefono', 'like', '%'.$palabra.'%');
-              if( $parametro === 'todos' ) {
-                  $users->withTrashed();
-                } else if( $parametro === 'inactivos' ) {
-                  $users->onlyTrashed();
+            switch ($parametro) {
+                case 'todos':
+                    $users = User::withTrashed();
+                    break;
+                case 'inactivos':
+                    $users = User::onlyTrashed();
+                    break;
+                case 'activos':
+                    $users = User::select('*');
+            }
+            if($parametro != 'inactivos'){
+                $users = $users->where('email', 'like', '%'.$palabra.'%')
+                      ->orWhere('name', 'like', '%'.$palabra.'%')
+                      ->orWhere('type', 'like', '%'.$palabra.'%')
+                      ->orWhere('telefono', 'like', '%'.$palabra.'%')
+                      ->orderBy('name');
                 }
-              $users->orderBy('name');
-              $users = $users->paginate(5);
+            $users =  $users->paginate(5);
             $total = $users->count();
 
-            return response()->json([
-        'ok' => true,
-        'total'=>$total,
-        'users' => $users
-      ], 200);
+          return response()->json([
+            'ok' => true,
+            'total'=>$total,
+            'users' => $users
+          ], 200);
         } catch (\Exception $e) {
-            return response()->json([
-        'ok' => false,
-        'users' => null,
-        'error' => ['busqueda' => 'Error al buscar usuarios en el sistema']
-      ], 500);
-        }
+          return response()->json([
+            'ok' => false,
+            'users' => null,
+            'error' => ['busqueda' => 'Error al buscar usuarios en el sistema']
+          ], 500);
+            }
     }
     /*---------------------------------------------------------------------------------------*/
     /**
