@@ -131,7 +131,7 @@ class ServiciosController extends Controller
 
         return response()->json([
             'ok'=> true,
-            'mensaje'=>'El registro se creo correctamente por un monto de '. $correo->totalMonto
+            'mensaje'=>'El servicio se registro correctamente '. number_format($correo->totalMonto, 2, ',', '.')
         ], 200);
     }
     /*---------------------------------------------------------------------------------------*/
