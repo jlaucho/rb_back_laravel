@@ -58,6 +58,7 @@ class UserController extends Controller
     */
     public function userList($parametro, $palabra = NULL)
     {
+        return response()->json(['parametro'=>$parametro]);
       $permitidas = ['todos', 'activos', 'inactivos'];
       if ( ! in_array($parametro, $permitidas) ) {
         return response()->json([
