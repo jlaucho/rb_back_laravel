@@ -20,11 +20,12 @@ class EmpresaController extends Controller
   public function store(EmpresaCreateRequest $request)
   {
   		$empresa = new Empresas();
+
   		$empresa->fill( $request->all() );
 
-  		$empresa->save();
+  		$empresa->name = strtoupper($empresa->name);
 
-      // dd($empresa);
+  		$empresa->save();
 
   		return response()->json([
   			'ok'=> true,

@@ -55,8 +55,13 @@ class CorreosEnviados extends Model
           case 'pendientes':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')
-                ->where('facturado', "NO");
+                ->where([['facturado', "NO"], ['ODC', 'NO']]);
               break;
+            case 'ODC':
+                $correos = CorreosEnviados::select('*')
+                    ->orderBy('created_at', 'DESC')
+                    ->where([['ODC', "SI"], ['facturado', 'NO']]);
+                break;
           case 'facturados':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')

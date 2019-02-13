@@ -11,6 +11,6 @@ $factory->define(\App\Models\Tabulador::class, function (Faker $faker) {
         'por_fin_semana'    => 20,
         'monto_desv_inter'  => 17000,
         'monto_desv_exter'  => 22000,
-        'fecha_inicio'      => '2019-01-01'
+        'fecha_inicio'      => '2019-02-01'
     ];
 });

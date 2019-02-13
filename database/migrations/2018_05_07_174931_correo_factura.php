@@ -26,7 +26,6 @@ class CorreoFactura extends Migration
             $table->float('totalRenglonFactura', 11, 2)->comment('monto total del renglon que se encuentra en la factura');
             $table->integer('cantServicios')->unsigned()->comment('Este es el numero por el cual se multiplica el total del servicio en la factura');
             $table->string('codigo', 8)->comment('Este es el codigo que aparece en el renglon de servicio, ejemplo TR005');
-            $table->string('ODC', 14)->nullable();
             $table->string('descripcion', 200);
 
             $table->timestamps();

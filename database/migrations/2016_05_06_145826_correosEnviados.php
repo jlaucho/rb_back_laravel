@@ -28,6 +28,7 @@ class CorreosEnviados extends Migration
             $table->float('monto_pernocta', 11, 2)->nullable()->comment('este es el calculo realizado con la multiplicacion de cantPernocta por el monto del tabulador vigente');
             $table->enum('bono_finSemana', ['SI', 'NO'])->default('NO');
             $table->enum('ODC', ['SI','NO'])->default('SI');
+            $table->string('ODC_number', 15)->nullable();
 
             $table->integer('realizado_por')->unsigned()->comment('Guarda el conductor que realizo el servicio');
             $table->foreign('realizado_por')->references('id')->on('users')->onDelete('cascade');
