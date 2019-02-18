@@ -12,6 +12,11 @@ class Tabulador extends Model
         'por_bono_nocturno', 'por_encomienda' , 'monto_pernocta' , 'monto_horas', 'por_fin_semana', 'monto_desv_inter', 'monto_desv_exter', 'fecha_inicio'
     ];
 
+    public function r_tabulador()
+    {
+        return $this->hasOne(CorreosEnviados::class, 'tabulador_id', 'id');
+    }
+
     public static function tabuladorActivo($collection)
     {
         switch ($collection) {

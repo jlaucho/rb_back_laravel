@@ -35,6 +35,7 @@ class ServiciosController extends Controller
         $correo->fill($request->all());
         $correo->fechaServicio = new \Carbon\Carbon($request->fechaServicio);
         $correo->registrado_por = auth()->user()->id;
+        $correo->tabulador_id = $tabulador->id;
         $correo->save();
 
         if ($correo) {

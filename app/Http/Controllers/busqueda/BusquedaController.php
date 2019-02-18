@@ -21,7 +21,9 @@ class BusquedaController extends Controller
           break;
 
         case 'servicio':
-              $busqueda = CorreosEnviados::where('idCorreos', $id)->get();
+              $busqueda = CorreosEnviados::where('idCorreos', $id)
+                ->with('r_recorridos', 'r_tabulador')
+                ->first();
           break;
 
         case 'factura':
