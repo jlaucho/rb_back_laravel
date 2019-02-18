@@ -18,6 +18,10 @@ class AddTabuladorIdToCorreos extends Migration
             $table->foreign('tabulador_id')->references('id')->on('tabuladors')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
+
+        Schema::table('tabuladors', function (Blueprint $table) {
+            $table->float('precio_USD', 8,2)->nullable();
+        });
     }
 
     /**
