@@ -80,8 +80,8 @@ Route::group(['prefix' => 'empresa', 'namespace'=>'empresa\\', 'middleware'=>'au
 Route::group(['prefix' => 'servicio', 'namespace'=>'servicios\\', 'middleware'=>'auth:api'], function () {
     Route::post('store', 'ServiciosController@store')->name('servicio.store');
     Route::get('{option?}', 'ServiciosController@correoList')->name('servicio.list');
+     Route::delete('/{id}', 'ServiciosController@delete')->name('servicio.delete');
     // Route::put('/{id}', 'CorreosEnviadosController@update')->name('correo.update');
-    // Route::delete('/{id}', 'CorreosEnviadosController@delete')->name('correo.delete');
 });
 /**
  *

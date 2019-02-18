@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CorreosEnviados extends Model
 {
-  // use SoftDeletes;
+   use SoftDeletes;
 
     protected $dates        = ['deleted_at'];
     protected $table 			  = 'correosEnviados';

@@ -10,6 +10,7 @@ use App\Models\Tabulador;
 use Mail;
 use App\Mail\CostoServicio;
 use App\Jobs\SendMail;
+use phpDocumentor\Reflection\Types\Object_;
 
 class ServiciosController extends Controller
 {
@@ -164,6 +165,34 @@ class ServiciosController extends Controller
         'correos' => $correos
       ], 200);
         
+    }
+    /*---------------------------------------------------------------------------------------*/
+
+    /**
+     * @param $idServicio
+     * @return object
+     * @method DELETE
+     */
+    public function delete($idServicio): object
+    {
+        $correo = CorreosEnviados::find($idServicio);
+
+        if (!$correo) {
+            return response()->json([
+                'ok' => false,
+                'total' => 0,
+                'mensaje'=>'No es posible ubicar el servicio solicitado',
+            ], 400);
+        }
+
+        $correo->delete();
+
+        return response()->json([
+            'ok' => true,
+            'mensaje' => 'El servicio fue eliminado correctamente',
+            'servicio' => $correo
+        ], 200);
+
     }
     /*---------------------------------------------------------------------------------------*/
 }

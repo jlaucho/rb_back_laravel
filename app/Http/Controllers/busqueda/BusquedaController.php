@@ -23,7 +23,7 @@ class BusquedaController extends Controller
         case 'servicio':
               $busqueda = CorreosEnviados::where('idCorreos', $id)
                 ->with('r_recorridos', 'r_tabulador')
-                ->first();
+                ->get();
           break;
 
         case 'factura':
@@ -37,6 +37,7 @@ class BusquedaController extends Controller
 
         case 'tabulador':
               $busqueda = Tabulador::tabuladorActivo($id);
+
           break;
 
         default:
@@ -54,8 +55,9 @@ class BusquedaController extends Controller
                     'error'=>[$collection =>'No existen datos para el ID: '. $id]
                 ], 202);
         }
-        // Si todo se encuentra todo se retorna los resultados de la busqueda
+
         $total = count($busqueda);
+
         return response()->json([
             'ok'=>true,
             'total'=> $total,
