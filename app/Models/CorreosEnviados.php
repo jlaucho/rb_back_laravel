@@ -65,13 +65,20 @@ class CorreosEnviados extends Model
             case 'ODC':
                 $correos = CorreosEnviados::select('*')
                     ->orderBy('created_at', 'DESC')
-                    ->where([['ODC', "SI"], ['facturado', 'NO']]);
+                    ->where([['ODC', "SI"], ['facturado', 'NO']])
+                    ->whereNull('ODC_number');
                 break;
           case 'facturados':
             $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')
                 ->where('facturado', "SI");
               break;
+          case 'por_facturar':
+             $correos = CorreosEnviados::select('*')
+                ->orderBy('created_at', 'DESC')
+                ->where('facturado', "NO")
+                ->whereNotNull('ODC_number');
+                break;
 
           default:
             $correos = CorreosEnviados::where('idCorreos', $option);
