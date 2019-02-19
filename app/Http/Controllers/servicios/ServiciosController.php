@@ -195,4 +195,35 @@ class ServiciosController extends Controller
 
     }
     /*---------------------------------------------------------------------------------------*/
+
+    /*---------------------------------------------------------------------------------------*/
+
+    /**
+     * @param $idServicio
+     * @return object
+     * @method DELETE
+     */
+    public function agregarODC( Request $request)
+    {
+        $servicio = CorreosEnviados::findOrFail($request->idServicio);
+
+        if (!$servicio) {
+            return response()->json([
+                'ok' => false,
+                'total' => 0,
+                'mensaje'=>'No es posible ubicar el servicio solicitado',
+            ], 400);
+        }
+
+        $servicio->ODC_number = $request->ODC_number;
+        $servicio->save();
+
+        return response()->json([
+            'ok' => true,
+            'mensaje' => 'El servicio fue actualizado con la ODC '. $request->ODC_number .' correctamente',
+            'servicio' => $servicio
+        ], 200);
+
+    }
+    /*---------------------------------------------------------------------------------------*/
 }
