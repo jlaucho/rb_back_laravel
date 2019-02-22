@@ -13,7 +13,7 @@ class CorreosEnviados extends Model
     protected $table 			  = 'correosEnviados';
     protected $primaryKey 	= 'idCorreos';
     protected $fillable 		= [
-        'idCorreos', 'mensaje', 'fechaServicio' , 'cantHoras' , 'cantPernocta', 'cantCorreos', 'totalMonto', 'bono_finSemana', 'ODC', 'realizado_por', 'registrado_por', 'created_at', 'tabulador_id'
+        'idCorreos', 'mensaje', 'fechaServicio' , 'cantHoras' , 'cantPernocta', 'cantCorreos', 'totalMonto', 'bono_finSemana', 'ODC', 'realizado_por', 'registrado_por', 'created_at', 'tabulador_id', 'usuario_id'
     ];
 
     /**
@@ -28,12 +28,12 @@ class CorreosEnviados extends Model
 
     public function r_registrado()
     {
-        return $this->belongsTo('App\Models\User', 'registrado_por', 'id');
+        return $this->belongsTo(User::class, 'registrado_por', 'id');
     }
 
     public function r_recorridos()
     {
-        return $this->hasMany('App\Models\Recorridos', 'correo_id', 'idCorreos');
+        return $this->hasMany(Recorridos::class, 'correo_id', 'idCorreos');
     }
 
     public function r_correos_facturas()

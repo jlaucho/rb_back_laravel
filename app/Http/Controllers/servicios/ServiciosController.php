@@ -24,6 +24,9 @@ class ServiciosController extends Controller
     */
     public function store(Request $request)
     {
+        return response()->json([
+            'request' => $request->all()
+        ]);
 
         $tabulador = Tabulador::tabuladorActivo('activo')->first();
         if (!$tabulador) {
@@ -34,6 +37,7 @@ class ServiciosController extends Controller
         }
         $correo = new CorreosEnviados();
         $correo->fill($request->all());
+        $correo->usuario_id = $request->cliente;
         $correo->fechaServicio = new \Carbon\Carbon($request->fechaServicio);
         $correo->registrado_por = auth()->user()->id;
         $correo->tabulador_id = $tabulador->id;
