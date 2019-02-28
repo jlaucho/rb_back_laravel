@@ -14,6 +14,57 @@ use phpDocumentor\Reflection\Types\Object_;
 
 class ServiciosController extends Controller
 {
+    private function recorridoStore (Request $request, Tabulador $tabulador, CorreosEnviados $correo) {
+        $montoTotalRecorridos = 0;
+        $montoTotalEncomienda = 0;
+        $montoTotalNocturno = 0;
+        foreach ($request->origen as $key => $origen) {
+            $recorrido = new Recorridos();
+            // Se asignan los valores a los recorridos
+            $recorrido->origen = $request->origen[$key];
+            $recorrido->destino = $request->destino[$key];
+            $recorrido->cantidad = $request->cantidad[$key];
+            // Se verifica si es un Servicio interno o externo
+            // de lo contrario se obtiene el valor suministrado por teclado
+            $recorrido->concepto = $request->concepto[$key];
+            switch ($recorrido->concepto) {
+                case 'DesvInter':
+                    $recorrido->recorrido = $tabulador->monto_desv_inter;
+                    break;
+                case 'DesvExter':
+                    $recorrido->recorrido = $tabulador->monto_desv_exter;
+                    break;
+                
+                default:
+                    $recorrido->recorrido = $request->recorrido[$key];
+                    break;
+            }
+            // return response()->json(['respuestaRequest'=> $recorrido], 200);
+            $recorrido->totalRecorrido = $recorrido->cantidad * $recorrido->recorrido;
+            $recorrido->encomienda = $request->encomienda[$key];
+            $recorrido->nocturno = $request->nocturno[$key];
+            $recorrido->r_correo()->associate($correo);
+
+            $montoTotalRecorridos += $recorrido->totalRecorrido;
+
+            // Se determina si ese recorrido tienen encomienda
+            if ($recorrido->encomienda == "SI") {
+                $montoTotalEncomienda += $recorrido->totalRecorrido;
+            }
+
+            // Se determina si ese recorrido tiene nocturno
+            if ($recorrido->nocturno == "SI") {
+                $montoTotalNocturno += $recorrido->totalRecorrido;
+            }
+
+            $recorrido->save();
+        }
+        return [
+            'montoTotalRecorridos' => $montoTotalRecorridos,
+            'montoTotalEncomienda' => $montoTotalEncomienda,
+            'montoTotalNocturno' => $montoTotalNocturno,
+        ];
+    }
     /**
     *
     * Store the CorreosEnviados
@@ -24,10 +75,6 @@ class ServiciosController extends Controller
     */
     public function store(Request $request)
     {
-        return response()->json([
-            'request' => $request->all()
-        ]);
-
         $tabulador = Tabulador::tabuladorActivo('activo')->first();
         if (!$tabulador) {
             return response()->json([
@@ -44,56 +91,14 @@ class ServiciosController extends Controller
         $correo->save();
 
         if ($correo) {
-            $montoTotalRecorridos = 0;
-            $montoTotalEncomienda = 0;
-            $montoTotalNocturno = 0;
-            foreach ($request->origen as $key => $origen) {
-                $recorrido = new Recorridos();
-                // Se asignan los valores a los recorridos
-                $recorrido->origen = $request->origen[$key];
-                $recorrido->destino = $request->destino[$key];
-                $recorrido->cantidad = $request->cantidad[$key];
-                // Se verifica si es un Servicio interno o externo
-                // de lo contrario se obtiene el valor suministrado por teclado
-                $recorrido->concepto = $request->concepto[$key];
-                switch ($recorrido->concepto) {
-                    case 'DesvInter':
-                        $recorrido->recorrido = $tabulador->monto_desv_inter;
-                        break;
-                    case 'DesvExter':
-                        $recorrido->recorrido = $tabulador->monto_desv_exter;
-                        break;
-                    
-                    default:
-                        $recorrido->recorrido = $request->recorrido[$key];
-                        break;
-                }
-                // return response()->json(['respuestaRequest'=> $recorrido], 200);
-                $recorrido->totalRecorrido = $recorrido->cantidad * $recorrido->recorrido;
-                $recorrido->encomienda = $request->encomienda[$key];
-                $recorrido->nocturno = $request->nocturno[$key];
-                $recorrido->r_correo()->associate($correo);
-
-                $montoTotalRecorridos += $recorrido->totalRecorrido;
-
-                // Se determina si ese recorrido tienen encomienda
-                if ($recorrido->encomienda == "SI") {
-                    $montoTotalEncomienda += $recorrido->totalRecorrido;
-                }
-
-                // Se determina si ese recorrido tiene nocturno
-                if ($recorrido->nocturno == "SI") {
-                    $montoTotalNocturno += $recorrido->totalRecorrido;
-                }
-
-                $recorrido->save();
-            }
+            
+                $totales = $this->recorridoStore($request, $tabulador, $correo);
             // Se guarda en la BD el total de los Nocturnos y Encomiendas
-            $correo->monto_encomienda = $montoTotalEncomienda; //Este es el monto en bruto hay que sacarle el porcentaje
-            $correo->monto_nocturno = $montoTotalNocturno; //Este en el monto en bruto hay que sacarle el porcentaje
+            $correo->monto_encomienda = $totales['montoTotalEncomienda']; //Este es el monto en bruto hay que sacarle el porcentaje
+            $correo->monto_nocturno = $totales['montoTotalNocturno']; //Este en el monto en bruto hay que sacarle el porcentaje
             // Se globaliza el monto deacuerdo al porcentaje en el tabulador
-            $montoServicioNocturno = $montoTotalNocturno * ($tabulador->por_bono_nocturno / 100);
-            $montoServicioEncomienda = $montoTotalEncomienda * ($tabulador->por_encomienda / 100);
+            $montoServicioNocturno = $totales['montoTotalNocturno'] * ($tabulador->por_bono_nocturno / 100);
+            $montoServicioEncomienda = $totales['montoTotalEncomienda'] * ($tabulador->por_encomienda / 100);
 
             $montoServicioNocturno = round($montoServicioNocturno, 2);
             $montoServicioEncomienda = round($montoServicioEncomienda, 2);
@@ -105,7 +110,7 @@ class ServiciosController extends Controller
                 $correo->monto_horas = $montoTotalHoras;
             }
             // Se saca el monto total del Servicio
-            $correo->totalMonto = $montoTotalRecorridos + $montoServicioNocturno + $montoServicioEncomienda + $montoTotalHoras;
+            $correo->totalMonto = $totales['montoTotalRecorridos'] + $montoServicioNocturno + $montoServicioEncomienda + $montoTotalHoras;
             // Se determina el servicio tiene bono por fin de semana
             $montoTotalFinSemana = 0;
             if ($correo->bono_finSemana == "SI") {

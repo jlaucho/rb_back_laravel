@@ -45,6 +45,11 @@ class CorreosEnviados extends Model
     {
         return $this->belongsTo(Tabulador::class, 'tabulador_id', 'id');
     }
+
+    public function r_usuario()
+    {
+        return $this->belongsTo(User::class, 'usuario_id', 'id');
+    }
     /**
      *
      * Method Static of CorreosEviados Method
@@ -96,6 +101,7 @@ class CorreosEnviados extends Model
             $correo->r_realizado;
             $correo->r_registrado;
             $correo->r_recorridos;
+            $correo->r_usuario;
         }
         $correos[0]->totalGeneral = $temp;
         // return $correos->totalFacturado;
