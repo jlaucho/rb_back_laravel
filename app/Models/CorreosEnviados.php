@@ -82,7 +82,8 @@ class CorreosEnviados extends Model
              $correos = CorreosEnviados::select('*')
                 ->orderBy('created_at', 'DESC')
                 ->where('facturado', "NO")
-                ->whereNotNull('ODC_number');
+                ->whereNotNull('ODC_number')
+                ->orWhere([['facturado', "NO"], ["ODC", "NO"]]);
                 break;
 
           default:
