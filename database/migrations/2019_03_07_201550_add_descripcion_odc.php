@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUsuarioIdTable extends Migration
+class AddDescripcionOdc extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,7 @@ class AddUsuarioIdTable extends Migration
     public function up()
     {
         Schema::table('correosEnviados', function (Blueprint $table) {
-            $table->unsignedInteger('usuario_id')->nullable();
-            $table->foreign('usuario_id')->references('id')->on('users');
+            $table->string('descripcion')->nullable()->comment('Este es el comentario que se coloca en la factura"el que viene en la ODC"');
         });
     }
 
@@ -27,7 +26,7 @@ class AddUsuarioIdTable extends Migration
     public function down()
     {
         Schema::table('correosEnviados', function (Blueprint $table) {
-
+            //
         });
     }
 }

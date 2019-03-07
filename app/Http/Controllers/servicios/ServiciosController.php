@@ -225,6 +225,7 @@ class ServiciosController extends Controller
         }
 
         $servicio->ODC_number = $request->ODC_number;
+        $servicio->descripcion = $request->descripcion;
         $servicio->save();
 
         return response()->json([

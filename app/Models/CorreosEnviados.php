@@ -13,7 +13,7 @@ class CorreosEnviados extends Model
     protected $table 			  = 'correosEnviados';
     protected $primaryKey 	= 'idCorreos';
     protected $fillable 		= [
-        'idCorreos', 'mensaje', 'fechaServicio' , 'cantHoras' , 'cantPernocta', 'cantCorreos', 'totalMonto', 'bono_finSemana', 'ODC', 'realizado_por', 'registrado_por', 'created_at', 'tabulador_id', 'usuario_id'
+        'idCorreos', 'mensaje', 'fechaServicio' , 'cantHoras' , 'cantPernocta', 'cantCorreos', 'totalMonto', 'bono_finSemana', 'ODC', 'realizado_por', 'registrado_por', 'created_at', 'tabulador_id', 'usuario_id', 'descripcion'
     ];
 
     /**
