@@ -29,7 +29,9 @@ class FacturaCreateRequest extends FormRequest
             'descripcion' =>'max:250',
             'IVA_por'     =>'required|numeric',
             'pagada'      =>'max:2',
-            'empresas_id' =>'required|numeric'
+            'empresas_id' =>'required|numeric',
+            'cantServicios'=>'required|array',
+            'codigo'        =>'required|array'
         ];
     }
 }

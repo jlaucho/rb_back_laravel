@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\factura;
 
-// use Illuminate\Http\Request;
+ use Illuminate\Http\Request;
 use App\Http\Requests\FacturaCreateRequest;
 use App\Http\Controllers\Controller;
 use App\Models\Facturas;
@@ -35,12 +35,14 @@ class FacturaController extends Controller
         // $pdf = \PDF::loadview('vendor.pdfs.generarFactura');
         // return $pdf->download('ejemplo.pdf');
         // return $valor;
-        return response()->json(
-            $request->all()
-        );
+
+        \DB::transaction(function () use ($request){
+
+
 
         $factura = new Facturas();
         $factura->fill($request->all());
+        $factura->fechaFactura = new \Carbon\Carbon($request->fechaFactura);
 
         $factura->save();
 
@@ -54,8 +56,6 @@ class FacturaController extends Controller
             $correo_factura->totalRenglonFactura = $correo->totalMonto;
             $correo_factura->cantServicios = $request->cantServicios[$key];
             $correo_factura->codigo = $request->codigo[$key];
-            $correo_factura->ODC = $request->ODC[$key];
-            $correo_factura->descripcion = $request->descripcion[$key];
             $correo_factura->r_factura()->associate($factura);
             $correo_factura->save();
 
@@ -72,11 +72,10 @@ class FacturaController extends Controller
         $factura->totalFact = $factura->baseImponible + $factura->IVA_monto;
         $factura->save();
 
-
+        });
         return response()->json([
             'ok'=> true,
-            'factura'=>$factura,
-            'mensaje'=>'Factura creada correctamente'
+            'mensaje'=>'Factura Numero: '. $request->numFactura .' ha sido creada correctamente'
         ], 201);
     }
     /*---------------------------------------------------------------------------------------*/
